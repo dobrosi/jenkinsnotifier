@@ -50,7 +50,7 @@ public class Main {
 			if (!titleText.equals(ptitleText)) {
 				String[] cmd = null;
 				if (isStable(titleText)) {
-					if (normal != null && !normal) {
+					if (normal == null || !normal) {
 						cmd = new String[] { "notify-send", "-t", "10000", titleText };
 					}
 					normal = true;
