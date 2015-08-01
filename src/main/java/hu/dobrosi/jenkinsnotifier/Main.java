@@ -16,6 +16,7 @@ public class Main {
 	private static String url = "/rssAll";
 	private static int delay = 10000;
 	private static String jenkinsProjectUrl;
+	private Boolean normal = null;
 
 	public static void main(String[] args) {
 		jenkinsProjectUrl = args[0];
@@ -47,14 +48,19 @@ public class Main {
 			String titleText = title.getText();
 			System.out.println(titleText);
 			if (!titleText.equals(ptitleText)) {
-				String[] cmd;
+				String[] cmd = null;
 				if (isStable(titleText)) {
-					cmd = new String[] { "notify-send", "-t", "10000", titleText };
+					if (normal != null && !normal) {
+						cmd = new String[] { "notify-send", "-t", "10000", titleText };
+					}
+					normal = true;
 				} else {
 					cmd = new String[] { "notify-send", "-u", "critical", titleText };
+					normal = false;
 				}
-
-				Runtime.getRuntime().exec(cmd);
+				if (cmd != null) {
+					Runtime.getRuntime().exec(cmd);
+				}
 			}
 			ptitleText = titleText;
 		} catch (JDOMException e) {
