@@ -2,7 +2,7 @@
 
 ## Simple maven run
 
-mvn exec:java
+`mvn exec:java`
 
 ## Create jar and execute standalone
 
