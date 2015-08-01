@@ -1,6 +1,5 @@
 package hu.dobrosi.jenkinsnotifier;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -60,12 +59,11 @@ public class Main {
 			ptitleText = titleText;
 		} catch (JDOMException e) {
 			e.printStackTrace();
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+			e.printStackTrace();
 			System.err.println(
 					"URL not found: " + jenkinsProjectUrl + "\nPlease configure your project Jenknis URL in pom.xml (jenkinsProjectUrl), or add it as first execution parameter.");
 			System.exit(-1);
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 
